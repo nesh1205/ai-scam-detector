@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AI Scam Detector</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Admin Dashboard</h1>
+            <p>Analytics and Reports for Scam Detector</p>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                <a href="/" class="admin-link">← Back to Scanner</a>
+                <button id="logout-btn" class="admin-link" style="background: var(--danger-color); border-color: var(--danger-color); color: white; cursor: pointer;">Logout</button>
+                <div id="connection-status" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--bg-secondary); border-radius: 0.5rem; border: 1px solid var(--border-color);">
+                    <span id="status-indicator" style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-secondary); display: inline-block;"></span>
+                    <span id="status-text" style="color: var(--text-secondary); font-size: 0.9rem;">Updating...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-scans">0</div>
+                <div class="stat-label">Total Scans</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="scam-count">0</div>
+                <div class="stat-label">Scams Detected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="safe-count">0</div>
+                <div class="stat-label">Safe Content</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avg-percentage">0%</div>
+                <div class="stat-label">Avg Scam %</div>
+            </div>
+        </div>
+
+        <!-- Recent Scans Table -->
+        <div class="main-card">
+            <h2 style="margin-bottom: 1.5rem; color: var(--text-primary);">Recent Scans</h2>
+            <div style="overflow-x: auto;">
+                <table class="scans-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Content Preview</th>
+                            <th>Scam %</th>
+                            <th>Status</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scans-table-body">
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                                Loading scans...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- All Scans Table -->
+        <div class="main-card">
+            <h2 style="margin-bottom: 1.5rem; color: var(--text-primary);">All Scans</h2>
+            <div style="overflow-x: auto;">
+                <table class="scans-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Content Preview</th>
+                            <th>Scam %</th>
+                            <th>Status</th>
+                            <th>Confidence</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="all-scans-table-body">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                                Loading all scans...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Realtime Database SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { getDatabase, ref, onValue, off } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDeKcqQwT6FEfJXWl4AGuRBFyOprJWGOWY",
+            authDomain: "ai-scam-ditector.firebaseapp.com",
+            databaseURL: "https://ai-scam-ditector-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            projectId: "ai-scam-ditector",
+            storageBucket: "ai-scam-ditector.firebasestorage.app",
+            messagingSenderId: "748229333146",
+            appId: "1:748229333146:web:c41ffef94b8643394a0f23"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        
+        // Make Firebase Realtime Database available globally
+        window.firebaseDatabase = database;
+        window.firebaseRef = ref;
+        window.firebaseOnValue = onValue;
+        window.firebaseOff = off;
+        
+        console.log('Firebase Realtime Database initialized');
+    </script>
+    <script src="static/js/admin.js"></script>
+</body>
+</html>
+

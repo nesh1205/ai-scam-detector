@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Scam Detector</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Admin Dashboard Button - Top Left -->
+    <div class="admin-button-top-left">
+        <a href="/login" class="admin-btn-link" title="Admin Dashboard">
+            <span class="admin-icon">📊</span>
+            <span class="admin-text">Admin</span>
+        </a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🛡️ AI Scam Detector</h1>
+            <p>Protect yourself from scams with real-time AI-powered analysis</p>
+        </header>
+
+        <div class="main-card">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="text">📝 Text Analysis</button>
+                <button class="tab-button" data-tab="url">🔗 URL Analysis</button>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <!-- Text Input Tab -->
+                <div id="text-tab">
+                    <div class="input-group">
+                        <label for="text-input">Paste or type the text you want to analyze:</label>
+                        <textarea 
+                            id="text-input" 
+                            placeholder="Enter suspicious text, email, message, or any content you want to check for scam indicators..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- URL Input Tab -->
+                <div id="url-tab" style="display: none;">
+                    <div class="input-group">
+                        <label for="url-input">Enter URL to analyze:</label>
+                        <input 
+                            type="url" 
+                            id="url-input" 
+                            placeholder="https://example.com"
+                        >
+                    </div>
+                </div>
+
+                <button id="scan-button" class="scan-button">Scan for Scam</button>
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Analyzing content with AI...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="results-section">
+                <div class="scam-percentage">
+                    <div class="percentage-circle">
+                        <div class="percentage-value" id="percentage-value">0%</div>
+                    </div>
+                    <div class="percentage-label">Scam Probability</div>
+                    <div class="status-badge" id="status-badge">Analyzing...</div>
+                </div>
+
+                <div class="analysis-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Scam Indicators</div>
+                        <ul class="indicators-list" id="indicators-list">
+                            <!-- Indicators will be populated here -->
+                        </ul>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">AI Analysis</div>
+                        <div class="detail-content" id="explanation-text">
+                            <!-- Explanation will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Recommendations</div>
+                        <div class="detail-content" id="recommendations-text">
+                            <!-- Recommendations will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/app.js"></script>
+</body>
+</html>
+
